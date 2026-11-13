@@ -16,3 +16,17 @@ This repository is based on the **Lesson 10 starter project** supplied by the sc
 - Update the current page after successful API responses without a page reload.
 - Process cart operations sequentially to preserve request order.
 - Explore interactive API documentation and health-check endpoints.
+
+## Technology Stack
+
+| Component | Technology |
+| --- | --- |
+| Frontend | HTML, CSS, vanilla JavaScript ES modules |
+| Web server and reverse proxy | Nginx |
+| Backend | Python, FastAPI, Uvicorn |
+| Database | PostgreSQL |
+| Database access | Psycopg with parameterized SQL |
+| Local orchestration | Docker Compose |
+| Frontend queue tests | Node.js built-in test runner |
+
+The supplied files pin Python to `3.14.7`, PostgreSQL to `18.6`, and Nginx to `stable-alpine`. These are the starter's configured versions, not a claim that the container images were verified or launched.
