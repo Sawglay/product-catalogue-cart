@@ -30,3 +30,16 @@ This repository is based on the **Lesson 10 starter project** supplied by the sc
 | Frontend queue tests | Node.js built-in test runner |
 
 The supplied files pin Python to `3.14.7`, PostgreSQL to `18.6`, and Nginx to `stable-alpine`. These are the starter's configured versions, not a claim that the container images were verified or launched.
+
+## Architecture
+
+Docker Compose runs three services:
+
+| Service | Role | Local port |
+| --- | --- | --- |
+| `frontend-web` | Serves the frontend and forwards `/api/` requests to FastAPI | `8080` |
+| `backend-api` | Handles product, cart, and health-check requests | `8000` |
+| `postgres-db` | Stores catalogue and cart data | `5432` |
+
+The browser calls the same-origin `/api/` routes through Nginx. The backend separates HTTP routes, application services, domain entities, data-transfer models, and database repositories. Product and cart functionality live within **one backend application**.
+
