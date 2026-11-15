@@ -121,3 +121,21 @@ On the first creation of the database volume, PostgreSQL runs:
 2. `backend-api/database/002-seed-data.sql` to load sample products, categories, tags, and THB currency data.
 
 Carts are created through browser interactions. Database data remains in the named volume when containers are stopped or removed with `docker compose down`. Editing the SQL files does not rerun initialization against an existing volume.
+
+## API Endpoints
+
+All cart requests require the `X-Session-Code` header. Reuse the same header value when creating and accessing a cart.
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/api/products` | List, search, filter, sort, and paginate products |
+| `GET` | `/api/products/{product_code}` | Retrieve a product |
+| `POST` | `/api/carts` | Create a session cart or return its existing cart |
+| `GET` | `/api/carts/{cart_code}` | Retrieve the session's cart |
+| `POST` | `/api/carts/{cart_code}/items` | Add a product or increase its quantity |
+| `PUT` | `/api/carts/{cart_code}/items/{product_code}` | Set quantity; zero removes the item |
+| `POST` | `/api/carts/{cart_code}/checkout` | Log demonstration checkout and delete the cart |
+| `GET` | `/api/health/live` | Check API liveness |
+| `GET` | `/api/health/ready` | Check database readiness |
+
+Product listing accepts `category`, `tag`, `name`, `sort`, `block`, and `items`. Defaults are `sort=name:asc`, `block=1`, and `items=20`. Tags may be colon-separated; sort supports `name:asc`, `name:desc`, `price:asc`, and `price:desc`.
