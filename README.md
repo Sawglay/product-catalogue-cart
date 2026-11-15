@@ -70,3 +70,54 @@ Upload the contents of the extracted `lesson-10` folder to the repository root. 
 | `frontend-web/tests/` | Cart queue tests |
 | `frontend-web/nginx.conf` | Static hosting and API proxy configuration |
 | `frontend-web/pages/` | Placeholder directory retained from the starter |
+
+## Getting Started
+
+### Prerequisites
+
+- Docker with Docker Compose available and the Docker engine running.
+- A modern web browser.
+- Git if cloning the repository, or download and extract the repository ZIP.
+- Node.js with ES module support if running the queue tests.
+
+Python and PostgreSQL run inside containers; a separate local installation is not required for the Docker setup.
+
+### Start the application
+
+Open a terminal in the project root, where `docker-compose.yml` is located:
+
+```bash
+docker compose up --build -d
+docker compose ps
+```
+
+On macOS, use:
+
+```bash
+docker compose -f docker-compose.mac.yml up --build -d
+docker compose -f docker-compose.mac.yml ps
+```
+
+Use the same `-f docker-compose.mac.yml` option for subsequent macOS Compose commands.
+
+### Open the application
+
+| Resource | URL |
+| --- | --- |
+| Shop | http://localhost:8080 |
+| Swagger UI | http://localhost:8000/api/docs |
+| ReDoc | http://localhost:8000/api/redoc |
+| OpenAPI schema | http://localhost:8000/api/openapi.json |
+| API liveness | http://localhost:8080/api/health/live |
+| Database readiness | http://localhost:8080/api/health/ready |
+
+The API documentation and schema also work through port `8080`, using the same `/api/` paths.
+
+### Database initialization
+
+On the first creation of the database volume, PostgreSQL runs:
+
+1. `backend-api/database/001-database-creation.sql` to create the tables.
+2. `backend-api/database/002-seed-data.sql` to load sample products, categories, tags, and THB currency data.
+
+Carts are created through browser interactions. Database data remains in the named volume when containers are stopped or removed with `docker compose down`. Editing the SQL files does not rerun initialization against an existing volume.
