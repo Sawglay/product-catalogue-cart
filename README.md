@@ -189,3 +189,22 @@ Stop the services while retaining database data:
 docker compose down
 ```
 
+## Current Scope and Limitations
+
+- The browser generates a new mock session on each page load. Reloading does not restore the previous browser cart, even though database rows may remain.
+- `X-Session-Code` is a demonstration session identifier, not user authentication.
+- Checkout does not process payments or create orders.
+- Page updates happen after API responses; there is no automatic synchronization across tabs or clients.
+- Product images and the logo are placeholders.
+- The Compose files contain local demonstration database credentials.
+- Some backend metadata and documentation still refer to Lesson 09, inherited from the starter.
+
+## Further Documentation
+
+- [Requirements and service interaction design](REQUIREMENTS.md)
+- [Backend API documentation](backend-api/README.md)
+- [Frontend documentation](frontend-web/README.md)
+
+## Acknowledgements
+
+The original Lesson 10 starter code and teaching materials were provided by the school/course instructors. This repository documents that coursework foundation; any future student modifications should be identified separately.
