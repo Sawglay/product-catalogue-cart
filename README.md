@@ -139,3 +139,53 @@ All cart requests require the `X-Session-Code` header. Reuse the same header val
 | `GET` | `/api/health/ready` | Check database readiness |
 
 Product listing accepts `category`, `tag`, `name`, `sort`, `block`, and `items`. Defaults are `sort=name:asc`, `block=1`, and `items=20`. Tags may be colon-separated; sort supports `name:asc`, `name:desc`, `price:asc`, and `price:desc`.
+
+
+Example product query:
+
+```text
+http://localhost:8080/api/products?name=notebook&sort=price:asc&block=1&items=20
+```
+
+For adding an item, use a product code returned by the catalogue:
+
+```json
+{
+  "productCode": "<product code returned by the API>",
+  "quantity": 2
+}
+```
+
+To set an existing item's quantity:
+
+```json
+{
+  "quantity": 3
+}
+```
+
+## Checks and Tests
+
+Run the supplied cart queue tests from the repository root:
+
+```bash
+node --test frontend-web/tests/cart-queue.test.mjs
+```
+
+These two tests check operation ordering when a response is delayed and queue recovery after a rejected request. They do not cover the full application or database integration.
+
+For a manual check, browse products, add an item, open the cart, remove an item, and try demonstration checkout. Check the readiness endpoint if requests fail.
+
+View service logs:
+
+```bash
+docker compose logs backend-api
+docker compose logs postgres-db
+```
+
+Stop the services while retaining database data:
+
+```bash
+docker compose down
+```
+
