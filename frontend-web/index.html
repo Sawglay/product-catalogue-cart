@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Everyday Shop</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+
+<body>
+  <header class="header">
+    <a class="brand" href="#browse" id="logo" aria-label="Everyday Shop home"><span class="logo" role="img"
+        aria-label="Logo placeholder">E</span><span>EVERYDAY<br><small>SHOP</small></span></a>
+    <form id="search-form" class="search"><label class="sr-only" for="search">Search products</label><input id="search"
+        type="search" placeholder="Search products"><button type="submit">Search</button></form>
+  </header>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Shop navigation"><span class="nav-label">EXPLORE</span><a href="#browse"
+        id="browse-link" class="active">Browse Products</a><a href="#cart" id="cart-link">View Cart <span
+          id="cart-count"></span></a></nav>
+    <main>
+      <div id="notice" role="status" aria-live="polite" hidden></div>
+      <section id="browse-view">
+        <div class="intro">
+          <p class="eyebrow">A LITTLE SOMETHING FOR EVERY DAY</p>
+          <h1>Find your next favourite</h1>
+          <p>Explore our collection, from everyday essentials to special finds.</p>
+        </div>
+        <div class="filters" aria-label="Product filters">
+          <label>Category<select id="category">
+              <option value="">---</option>
+            </select></label>
+          <label>Tag<select id="tag">
+              <option value="">---</option>
+            </select></label>
+          <label>Sort by<select id="sort">
+              <option value="">---</option>
+              <option value="name:asc">A-&gt;Z</option>
+              <option value="name:desc">Z-&gt;A</option>
+              <option value="price:asc">Price Low-&gt;High</option>
+              <option value="price:desc">Price High-&gt;Low</option>
+            </select></label>
+        </div>
+        <div id="products" aria-live="polite"></div>
+      </section>
+      <section id="cart-view" hidden>
+        <p class="eyebrow">YOUR SELECTION</p>
+        <h1>View Cart</h1>
+        <div id="cart-content"></div>
+      </section>
+    </main>
+  </div>
+  <dialog id="details">
+    <div id="details-content"></div>
+  </dialog>
+  <script type="module" src="/scripts/index.js"></script>
+</body>
+
+</html>
